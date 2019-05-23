@@ -119,7 +119,7 @@ def getwithcookie(request_url,params,type="json"):
 		print("下载失败，重试……")
 		return getwithcookie(request_url,params,type)
 
-#附带cookie下载数据集中的图片，保存在path下，文件名未上传时的文件名，如果重名会相互覆盖
+#附带cookie下载数据集中的图片，保存在path下，文件名未上传时的文件名，如果重名会忽略
 #url：图片url
 #name：图片文件名
 #path：labelimg工作目录
