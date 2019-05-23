@@ -27,3 +27,7 @@ easydl2labelImg.downloaddateset(20076,r"C:\\Users\\KOOKY\\Desktop\\works")
 或者直接命令行方式调用
 
 python main.py -dataset_id 20076 -xmlpath C:\\Users\\KOOKY\\Desktop\\works
+
+
+本地labelImg数据上载到easydl工具参见：
+https://github.com/kooky126/labelImg2easydl
