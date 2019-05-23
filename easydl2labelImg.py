@@ -133,7 +133,7 @@ def downloadimage(url,path,name):
 #获取数据集json数据
 #dataset_id：easydl数据集id
 #path：lableImg的数据目录
-#annotated:数据集中的分类，1：已标注，0：未标注
+#annotated:数据集中的分类，1：已标注，2：未标注
 #offset：页面偏移量，第一页为0
 def getdateset(dataset_id,annotated=1,offset=0):
 	request_url = "http://ai.baidu.com/easydl/api"
@@ -153,7 +153,7 @@ def getdateset(dataset_id,annotated=1,offset=0):
 #下载easydl数据集的一页数据并转换为labelImg规格
 #dataset_id：easydl数据集id
 #path：lableImg的数据目录
-#annotated:数据集中的分类，1：已标注，0：未标注
+#annotated:数据集中的分类，1：已标注，2：未标注
 #offset：页面偏移量，第一页为0
 def downloaddatesetpage(dataset_id,path,annotated=0,offset=0):
 	size=0
