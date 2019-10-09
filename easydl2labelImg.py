@@ -100,7 +100,7 @@ def getwithcookie(request_url,params,type="json"):
 			request.add_header("Content-Type","application/json;charset=UTF-8")
 		else:
 			request.add_header("Accept","image/webp,image/apng,image/*,*/*;q=0.8")
-		request.add_header("Accept-Encoding","gzip, deflate")
+		#request.add_header("Accept-Encoding","gzip, deflate")
 		request.add_header("Accept-Language","zh-CN,zh;q=0.9")
 		request.add_header("Connection","keep-alive")
 		jar = http.cookiejar.MozillaCookieJar()
