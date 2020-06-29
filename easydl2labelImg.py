@@ -112,7 +112,7 @@ def getwithcookie(request_url,params,type="json"):
 		request.add_header("Host","ai.baidu.com")
 		request.add_header("Origin","http://ai.baidu.com")
 		request.add_header("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36")
-		response = urllib.request.urlopen(request,timeout=10)
+		response = urllib.request.urlopen(request,timeout=60)
 		content = response.read()
 		return content
 	except socket.timeout:
@@ -167,8 +167,8 @@ def downloaddatesetpage(dataset_id,path,annotated=0,offset=0):
 				if 'items' in data['result']:
 					size = len(data['result']['items'])
 					for object in data['result']['items']:
-						name = object['name']
-						url = object['url']
+						name = object['id']+".jpg"
+						url = "http:"+object['url']
 						downloadimage(url,path,name)
 						#如果是已标注的，同时生成xml文件
 						if annotated==1:
