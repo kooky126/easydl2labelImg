@@ -24,7 +24,7 @@ def initxml(path,name):
 	filename.text = name
 	annotation.append(filename)
 	pathe=ET.Element("path")
-	pathe.text = path+name
+	pathe.text = path+os.sep+name
 	annotation.append(pathe)
 	source=ET.Element("source")
 	database=ET.SubElement(source,'database')
