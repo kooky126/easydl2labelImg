@@ -14,7 +14,7 @@ import hashlib
 #name：图片文件名
 #path：lableImg工作目录
 def initxml(path,name):
-	img = cv2.imread(path+name)
+	img = cv2.imread(path+os.sep+name)
 	imgheight, imgwidth,imgdepth =img.shape
 	annotation=ET.Element("annotation")
 	folder=ET.Element("folder")
@@ -109,8 +109,7 @@ def getwithcookie(request_url,params,type="json"):
 		for c in jar:
 			cookie += c.name + '=' + c.value + '; '
 		request.add_header("Cookie",cookie)
-		request.add_header("Host","ai.baidu.com")
-		request.add_header("Origin","http://ai.baidu.com")
+		request.add_header('Referer', 'http://ai.baidu.com/')
 		request.add_header("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36")
 		response = urllib.request.urlopen(request,timeout=60)
 		content = response.read()
@@ -125,9 +124,9 @@ def getwithcookie(request_url,params,type="json"):
 #path：labelimg工作目录
 def downloadimage(url,path,name):
 	if not os.path.exists(path+name):
-		print("正在下载图片："+path+name)
+		print("正在下载图片："+url+" => "+path+name+";")
 		content = getwithcookie(url,None,"image")
-		with open(path+name, 'wb') as f:
+		with open(path+os.sep+name, 'wb') as f:
 			f.write(content)   
 
 #获取数据集json数据
@@ -168,7 +167,9 @@ def downloaddatesetpage(dataset_id,path,annotated=0,offset=0):
 					size = len(data['result']['items'])
 					for object in data['result']['items']:
 						name = object['id']+".jpg"
-						url = "http:"+object['url']
+						url = object['compress']
+						if url[0]=='/':
+							url = "http:"+url
 						downloadimage(url,path,name)
 						#如果是已标注的，同时生成xml文件
 						if annotated==1:
