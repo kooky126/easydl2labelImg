@@ -9,6 +9,10 @@ import socket
 from xml.etree import ElementTree as ET
 import http.cookiejar
 import hashlib
+import ssl
+
+#跳过ssl验证
+ssl._create_default_https_context = ssl._create_unverified_context
 
 #初始化lableImg的dom主体数据，只包含图片数据，不含标注数据
 #name：图片文件名
